@@ -4,5 +4,10 @@
 
 #ifndef CODE_MESSAGE_H
 #define CODE_MESSAGE_H
+namespace amqp {
+    class message {
+
+    };
+};
 
 #endif //CODE_MESSAGE_H
