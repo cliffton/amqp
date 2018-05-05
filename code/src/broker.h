@@ -18,9 +18,10 @@ namespace amqp {
      * and invoke the exchange.
      */
     class broker {
-
+    public:
         broker(exchange::type ex_type);
 
+        void run();
 
     private:
         exchange exchange_;
