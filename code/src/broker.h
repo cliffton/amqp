@@ -12,11 +12,17 @@ using amqp::exchange;
 
 namespace amqq {
 
+    /**
+     * This should run as a thread
+     * Will wait for messages on connections
+     * and invoke the exchange.
+     */
     class broker {
 
         broker(exchange::type ex_type) : exchange_{ex_type} {
-            std::cout << ex_type << std::endl;
         }
+
+
 
     private:
         exchange exchange_;

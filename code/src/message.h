@@ -13,22 +13,21 @@ namespace amqp {
     class message {
     public:
 
-        message(string &data, string &topic) {
-            data_ = data;
-            topic_ = topic;
-        }
+        message(string &data, string &topic);
 
-        string get_data() const {
-            return data_;
-        }
+        string get_data() const;
 
-        string get_topic() const {
-            return topic_;
-        }
+        string get_topic() const;
+
+        unsigned int get_count() const;
+
+        void increment_count();
+
 
     private:
         string data_;
         string topic_;
+        unsigned int count_{};
 
 
     };

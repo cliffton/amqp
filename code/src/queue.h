@@ -8,7 +8,8 @@
 namespace amqp {
 
     class queue {
-
+    private:
+        unsigned int consumers_{};
     };
 }
 

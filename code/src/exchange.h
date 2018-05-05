@@ -7,6 +7,7 @@
 
 #include <map>
 #include "queue.h"
+#include "message.h"
 
 namespace amqp {
     class exchange {
@@ -17,9 +18,23 @@ namespace amqp {
             TOPIC
         };
 
-        exchange(type ex_type) : type_{ex_type} {
+        /**
+         * Constructor takes
+         * exchange type as input.
+         * @param ex_type
+         */
+        exchange(type ex_type);
 
-        }
+        /**
+         * Binds a queue to the give
+         * binding key.
+         * @param q
+         * @param routing_key
+         */
+        void bind(amqp::queue q, const std::string &routing_key);
+
+
+        void process_message(amqp::message msg);
 
     private:
         type type_;
