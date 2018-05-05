@@ -19,7 +19,7 @@ namespace amqp {
      */
     class broker {
     public:
-        broker(exchange::type ex_type);
+        broker(exchange::type etype);
 
         void run();
 

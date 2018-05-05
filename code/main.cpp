@@ -1,17 +1,17 @@
 #include <iostream>
-#include "src/broker.h"
+//#include "src/broker.h"
+#include "thread"
+#include "src/exchange.h"
 
-
-
-using amqp::broker;
+using std::thread;
+//using amqp::broker;
 using amqp::exchange;
 
 int main() {
 
-    broker broker1(exchange::type::DIRECT);
-    broker.run();
-
-
-    std::cout << "Hello, World!" << std::endl;
+//    broker b(exchange::type::DIRECT);
+//    thread t(&broker::run, b);
+//    t.join();
+    amqp::exchange ex{exchange::DIRECT};
     return 0;
 }
