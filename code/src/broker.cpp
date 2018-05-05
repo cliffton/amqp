@@ -7,5 +7,11 @@
 using amqp::broker;
 
 broker::broker(exchange::type ex_type) : exchange_{ex_type} {
-    std::cout<< "Broker created!" << std::endl;
+    std::cout << "Broker created!" << std::endl;
+}
+
+void broker::run() {
+
+    std::cout << "Running " << std::endl;
+
 }
