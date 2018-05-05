@@ -6,7 +6,7 @@
 #define CODE_EXCHANGE_H
 
 #include <map>
-//#include "queue.h"
+#include "queue.h"
 #include "message.h"
 
 namespace amqp {
@@ -31,14 +31,14 @@ namespace amqp {
          * @param q
          * @param routing_key
          */
-//        void bind(amqp::queue q, const std::string &routing_key);
+        void bind(amqp::queue q, const std::string &routing_key);
 
 
-//        void process_message(amqp::message msg);
+        void process_message(amqp::message msg);
 
     private:
         type type_;
-//        std::map<std::string, amqp::queue> bindings_;
+        std::map<std::string, amqp::queue> bindings_;
     };
 }
 
