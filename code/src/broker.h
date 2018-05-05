@@ -10,7 +10,7 @@
 
 using amqp::exchange;
 
-namespace amqq {
+namespace amqp {
 
     /**
      * This should run as a thread
@@ -19,9 +19,7 @@ namespace amqq {
      */
     class broker {
 
-        broker(exchange::type ex_type) : exchange_{ex_type} {
-        }
-
+        broker(exchange::type ex_type);
 
 
     private:
