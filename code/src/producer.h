@@ -11,6 +11,17 @@ namespace amqp {
 
         // Establish connection to broker
         // Send message to broker.
+
+        /**
+         * Connect to server/broker
+         */
+        void connect();
+
+        /**
+         * Send message to broker/server.
+         */
+        void send_message();
+
     };
 }
 
