@@ -6,7 +6,7 @@
 
 using amqp::broker;
 
-broker::broker(exchange::type ex_type) : exchange_{ex_type} {
+broker::broker(exchange::type etype) : exchange_{etype} {
     std::cout << "Broker created!" << std::endl;
 }
 
