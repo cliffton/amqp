@@ -25,6 +25,8 @@ namespace amqp {
 
         void consume();
 
+        void run();
+
     private:
         unsigned int id_;
         string name_;
