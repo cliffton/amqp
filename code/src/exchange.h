@@ -40,7 +40,7 @@ namespace amqp {
 
     private:
         type type_;
-        std::map<std::string, amqp_queue> bindings_;
+        std::map<std::string, std::vector<amqp_queue>> bindings_;
     };
 }
 
