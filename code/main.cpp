@@ -2,7 +2,7 @@
 #include "thread"
 #include "src/broker.h"
 #include "src/client.h"
-
+#include "src/logger.h"
 
 using std::thread;
 using amqp::broker;
@@ -14,6 +14,7 @@ using std::this_thread::sleep_for;
 
 int main() {
 
+    logger logger_{std::cout};
     broker b(exchange::type::DIRECT);
     // Do you want to create
     std::vector<client *> clients;
@@ -37,15 +38,12 @@ int main() {
         std::string binding_key;
         std::cout << "Please provide client key binding:";
         std::cin >> binding_key;
-//        client c{client_name, binding_key};
-//        c.start();
-        client *c = new client{client_name, binding_key};
+        client *c = new client{client_name, binding_key, b, logger_};
         c->start();
         clients.emplace_back(c);
         b.register_client(*c, binding_key);
 
     }
-    b.setup();
     thread bt(&broker::run, b);
     sleep_for(milliseconds(1000));
     broker::is_running = false;

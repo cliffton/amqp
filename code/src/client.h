@@ -22,7 +22,7 @@ namespace amqp {
      * @authors Manpreet Kaur, Cliffton Fernandes
      *
      */
-    class client : my_thread {
+    class client : public my_thread {
 
     public:
         static unsigned int next_id;

@@ -23,7 +23,7 @@ producer::producer(string& i_name, string& i_topic, broker& i_broker,logger& i_l
 void producer::run() {
 
     auto start = std::chrono::system_clock::now();
-    auto end ;
+    auto end = start;
     int dataIndex = 0;
     do {
         std::stringstream data;

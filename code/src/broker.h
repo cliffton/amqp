@@ -3,7 +3,11 @@
 
 #include <iostream>
 #include "exchange.h"
-#include "client.h"
+
+
+namespace amqp{
+    class client;
+}
 
 using amqp::exchange;
 using amqp::client;
