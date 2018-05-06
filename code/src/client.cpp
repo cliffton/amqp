@@ -48,8 +48,12 @@ bool client::consume() {
 }
 
 void client::run() {
+
     while (consume()) {
     }
+    //Once there is no more data inform broker
+
+
 
 }
 
