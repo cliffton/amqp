@@ -16,11 +16,16 @@ void exchange::bind(amqp_queue q, const std::string &routing_key) {
 }
 
 
-void exchange::process_message(amqp::message msg) {
+void exchange::process_message(message msg) {
     // find routing key in bindings
-    auto queues = bindings_.find(msg.get_topic());
-    if (queues != bindings_.end()) {
-        // depending on type of exchange deliver msg to bounded queues.
+    // depending on type of exchange deliver msg to bounded queues.
+    if (type_ == type::FAN_OUT) {
+        fanout(msg);
+    } else if (type_ == type::DIRECT) {
+        direct(msg);
+    }
+    else if(type_ == type::TOPIC){
+        topic(msg);
     }
 
 }

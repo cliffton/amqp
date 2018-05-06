@@ -10,6 +10,7 @@
 #include "message.h"
 
 using amqp::amqp_queue;
+using amqp::message;
 
 namespace amqp {
     class exchange {
@@ -35,7 +36,36 @@ namespace amqp {
          */
         void bind(amqp_queue q, const std::string &routing_key);
 
-        void process_message(amqp::message msg);
+        void process_message(message msg);
+
+        /**
+         * Send message to all queues
+         * @param msg
+         */
+        void fanout(message msg) {
+            for (auto b : bindings_) {
+                for (auto q : b.second) {
+                    q.add_message(msg);
+                }
+            }
+        }
+
+        /**
+         * Send message to same routing keys.
+         * @param msg
+         */
+        void direct(message msg) {
+            auto queues = bindings_.find(msg.get_topic());
+            if (queues != bindings_.end()) {
+                for (auto q: queues->second) {
+                    q.add_message(msg);
+                }
+            }
+        }
+
+        void topic(message msg) {
+            
+        }
 
     private:
         type type_;
