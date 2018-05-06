@@ -22,3 +22,8 @@ void broker::setup() {
 
 
 }
+
+
+void broker::register_binding(const string &binding_key) {
+    exchange_.bind(binding_key);
+}

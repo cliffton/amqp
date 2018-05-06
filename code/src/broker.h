@@ -21,9 +21,11 @@ namespace amqp {
     public:
         broker(exchange::type etype);
 
+        void register_binding(const string &binding_key);
+
         void setup();
 
-        
+
 
         void run();
 
