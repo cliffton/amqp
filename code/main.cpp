@@ -9,11 +9,8 @@ using amqp::exchange;
 int main() {
 
     broker b(exchange::type::DIRECT);
+    b.setup();
     thread t(&broker::run, b);
     t.join();
-
-    string data = "data";
-    string topic = "topic";
-    amqp::message m{data, topic};
     return 0;
 }

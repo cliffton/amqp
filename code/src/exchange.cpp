@@ -23,8 +23,7 @@ void exchange::process_message(message msg) {
         fanout(msg);
     } else if (type_ == type::DIRECT) {
         direct(msg);
-    }
-    else if(type_ == type::TOPIC){
+    } else if (type_ == type::TOPIC) {
         topic(msg);
     }
 

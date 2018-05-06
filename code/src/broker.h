@@ -21,6 +21,10 @@ namespace amqp {
     public:
         broker(exchange::type etype);
 
+        void setup();
+
+        
+
         void run();
 
     private:

@@ -64,7 +64,7 @@ namespace amqp {
         }
 
         void topic(message msg) {
-            
+
         }
 
     private:

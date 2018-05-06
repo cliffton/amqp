@@ -15,3 +15,10 @@ void broker::run() {
     std::cout << "Running " << std::endl;
 
 }
+
+void broker::setup() {
+
+    // Bind queues.
+
+
+}
