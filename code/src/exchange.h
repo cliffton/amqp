@@ -33,10 +33,9 @@ namespace amqp {
          * @param q
          * @param routing_key
          */
-//        void bind(amqp_queue q, const std::string &routing_key);
-//
-//
-//        void process_message(amqp::message msg);
+        void bind(amqp_queue q, const std::string &routing_key);
+
+        void process_message(amqp::message msg);
 
     private:
         type type_;
