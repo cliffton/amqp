@@ -1,8 +1,13 @@
 #include "client.h"
+#include "message.h"
 
 using amqp::client;
 
 unsigned int client::next_id = 1;
+
+const string RECEIVED_DATA = "Received Data";
+
+
 
 
 client::client(string i_name, string i_bindingKey,broker& i_broker, logger& i_logger) :
@@ -14,8 +19,7 @@ client::client(string i_name, string i_bindingKey,broker& i_broker, logger& i_lo
 {
 
 
-    broker_.register_client(*this, binding_key_);
-
+    client_queue_ = broker_.register_client(*this, binding_key_);
 
 }
 
@@ -24,14 +28,28 @@ unsigned int client::get_id() {
     return id_;
 }
 
-void client::consume() {
+bool client::consume() {
+
+    message readMessage = client_queue_->get_message();
+    if(readMessage.getMessageType() == MessageType::DATA) {
+        logger_.log(std::string("CL:" + id_ ) + RECEIVED_DATA +  readMessage.get_data());
+        return true;
+    }
+    else {
+        logger_.log(std::string("CL:" + id_ ) + RECEIVED_DATA + std::string("Control Message!") );
+        logger_.log(std::string("CL:" + id_ + std::string("Exiting")));
+        return false;
+    }
 
 }
 
 void client::run() {
-    while (true) {
-        consume();
+
+    while (consume()) {
     }
+    //Once there is no more data inform broker
+
+
 
 }
 

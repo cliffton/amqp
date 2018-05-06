@@ -8,6 +8,7 @@ amqp_queue::amqp_queue(unsigned int client_id) : client_id_{client_id},queue_act
 }
 
 
+
 void amqp_queue::add_message(message msg) {
 
     {
@@ -41,4 +42,8 @@ message amqp_queue::get_message() {
     }
 
 
+}
+
+unsigned int amqp::amqp_queue::getClientId() {
+    return client_id_;
 }

@@ -23,7 +23,9 @@ namespace amqp {
      *
      */
     class amqp_queue {
+
     public:
+
 
         amqp_queue(unsigned int client_id);
 
@@ -32,6 +34,11 @@ namespace amqp {
         message get_message();
 
         bool get_queue_active_status();
+
+
+
+
+        unsigned int getClientId();
 
     private:
 
