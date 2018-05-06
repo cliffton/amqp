@@ -21,7 +21,8 @@ void broker::run() {
 
 }
 
-void broker::setup() {
+void amqp::broker::endSimulation() {
+    exchange_.endSession();
 
 }
 

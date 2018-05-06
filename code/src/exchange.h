@@ -67,6 +67,8 @@ namespace amqp {
 
         std::shared_ptr<amqp_queue> bind_client(client &c, const string &binding_key);
 
+        void endSession();
+
     private:
 
         type type_;

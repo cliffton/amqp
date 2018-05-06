@@ -27,7 +27,7 @@ namespace amqp {
 
         std::shared_ptr<amqp_queue> register_client(client &c, const string &binding_key);
 
-        void setup();
+
 
         void publish(message msg);
 
@@ -35,8 +35,13 @@ namespace amqp {
 
         static bool is_running;
 
+        void endSimulation();
+
     private:
+
         exchange exchange_;
+
+
 
     };
 }

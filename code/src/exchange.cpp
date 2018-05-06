@@ -60,6 +60,18 @@ std::shared_ptr<amqp_queue> exchange::bind_client(client& i_client, const string
 
 }
 
+void amqp::exchange::endSession() {
+
+    for (auto& queues : bindings_) {
+        //Check if a queue already exists for this client.
+        for (auto &queue: queues.second) {
+            queue.reset();
+        }
+    }
+    bindings_.clear();
+
+}
+
 /**
  * Send Message to all the the queues for which  binding key matches input message topic key.
  *
