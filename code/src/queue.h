@@ -13,6 +13,14 @@ using std::condition_variable;
 
 namespace amqp {
 
+    /**
+     * Stores the messages forwarded by the exchange.
+     * The consumers subscribe to the queues and
+     * read the messages from the respective queues.
+     *
+     * @authors Manpreet Kaur, Cliffton Fernandes
+     *
+     */
     class amqp_queue {
     public:
 

@@ -13,6 +13,16 @@ using amqp::message;
 using amqp::broker;
 
 namespace amqp {
+
+    /**
+     * This is the process that produces
+     * the messages and publishes the messages to the broker.
+     * The instances of this class should run as separate
+     * thread publishing messages to the broker.
+     *
+     * @authors Manpreet Kaur, Cliffton Fernandes
+     *
+     */
     class producer: public my_thread{
 
     public:

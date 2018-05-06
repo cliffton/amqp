@@ -13,6 +13,15 @@ namespace amqp {
         CONTROL
     };
 
+    /**
+     * As the name suggests it is the message/entity that is passed
+     * from the producer to the consumers in the system.
+     * Each message can have multiple properties but should
+     * contain a routing key and the message data.
+     *
+     * @authors Manpreet Kaur, Cliffton Fernandes
+     *
+     */
     class message {
 
 

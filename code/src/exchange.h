@@ -10,6 +10,18 @@ using amqp::amqp_queue;
 using amqp::message;
 
 namespace amqp {
+
+    /**
+     * The exchange is responsible for sorting the messages into
+     * different queues depending on the routing key of the message.
+     * There are 3 types of exchanges:
+     *  - Fanout
+     *  - Direct
+     *  - Topic
+     *
+     * @authors Manpreet Kaur, Cliffton Fernandes
+     *
+     */
     class exchange {
     public:
 
