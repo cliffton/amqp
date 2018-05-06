@@ -32,6 +32,8 @@ namespace amqp {
 
         void run();
 
+        static bool is_running;
+
     private:
         exchange exchange_;
 

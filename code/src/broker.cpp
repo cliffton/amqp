@@ -5,6 +5,7 @@
 #include "broker.h"
 
 using amqp::broker;
+bool broker::is_running = true;
 
 broker::broker(exchange::type etype) : exchange_{etype} {
     std::cout << "Broker created!" << std::endl;
@@ -17,8 +18,6 @@ void broker::run() {
 }
 
 void broker::setup() {
-
-    // Bind queues.
 
 
 }

@@ -16,3 +16,7 @@ client::client(const string &name, const string &binding_key) : id_{next_id++}, 
 unsigned int client::get_id() {
     return id_;
 }
+
+void client::run() {
+
+}
