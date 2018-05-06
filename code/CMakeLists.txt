@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Wextra -Weffc++ -pedantic -pthread -g")
 
 set(AMQP_SOURCE_FILES
+        src/message.cpp
         src/queue.cpp
         src/exchange.cpp
         src/broker.cpp

@@ -11,5 +11,9 @@ int main() {
     broker b(exchange::type::DIRECT);
     thread t(&broker::run, b);
     t.join();
+
+    string data = "data";
+    string topic = "topic";
+    amqp::message m{data, topic};
     return 0;
 }

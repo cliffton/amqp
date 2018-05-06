@@ -2,13 +2,13 @@
 // Created by cliffton on 5/5/18.
 //
 
+#include <iostream>
 #include "message.h"
 
 using amqp::message;
 
-message::message(string &data, string &topic) {
-    data_ = data;
-    topic_ = topic;
+message::message(string &data, string &topic) : data_{data}, topic_{topic} {
+    std::cout << "Message created!" << std::endl;
 }
 
 string message::get_data() const {

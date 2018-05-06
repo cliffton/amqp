@@ -9,6 +9,8 @@
 #include "queue.h"
 #include "message.h"
 
+using amqp::amqp_queue;
+
 namespace amqp {
     class exchange {
     public:
@@ -31,14 +33,14 @@ namespace amqp {
          * @param q
          * @param routing_key
          */
-        void bind(amqp::queue q, const std::string &routing_key);
-
-
-        void process_message(amqp::message msg);
+//        void bind(amqp_queue q, const std::string &routing_key);
+//
+//
+//        void process_message(amqp::message msg);
 
     private:
         type type_;
-        std::map<std::string, amqp::queue> bindings_;
+        std::map<std::string, amqp_queue> bindings_;
     };
 }
 
