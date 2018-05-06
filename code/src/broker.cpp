@@ -14,6 +14,10 @@ broker::broker(exchange::type etype) : exchange_{etype} {
 void broker::run() {
 
     std::cout << "Running " << std::endl;
+    while (broker::is_running) {
+        message msg = message("data", "x.x");
+        exchange_.process_message(msg);
+    }
 
 }
 
