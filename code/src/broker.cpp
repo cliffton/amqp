@@ -23,7 +23,10 @@ void broker::run() {
 
 void broker::setup() {
 
+}
 
+void broker::publish(message msg) {
+    exchange_.process_message(msg);
 }
 
 
@@ -31,6 +34,6 @@ void broker::register_binding(const string &binding_key) {
     exchange_.bind(binding_key);
 }
 
-void broker::register_client(client c, const string &binding_key) {
+void broker::register_client(client &c, const string &binding_key) {
     exchange_.bind_client(c, binding_key);
 }

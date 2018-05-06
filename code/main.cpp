@@ -16,7 +16,7 @@ int main() {
 
     broker b(exchange::type::DIRECT);
     // Do you want to create
-    std::vector<thread> clients;
+    std::vector<client *> clients;
     unsigned int client_count;
     unsigned int queue_count;
     std::cout << "Number of bindings ?";
@@ -37,19 +37,22 @@ int main() {
         std::string binding_key;
         std::cout << "Please provide client key binding:";
         std::cin >> binding_key;
-        client c{client_name, binding_key};
-        thread ct{&client::run, c};
-        clients.emplace_back(std::move(ct));
-        b.register_client(c, binding_key);
+//        client c{client_name, binding_key};
+//        c.start();
+        client *c = new client{client_name, binding_key};
+        c->start();
+        clients.emplace_back(c);
+        b.register_client(*c, binding_key);
 
     }
     b.setup();
     thread bt(&broker::run, b);
-    sleep_for(milliseconds(10000));
+    sleep_for(milliseconds(1000));
     broker::is_running = false;
     bt.join();
-    for (auto &ct : clients) {
-        ct.join();
+    for (auto ct : clients) {
+        ct->stop();
+        ct->join();
     }
 
     return 0;

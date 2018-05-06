@@ -6,8 +6,13 @@
 #define CODE_PRODUCER_H
 
 #include <string>
+#include "message.h"
+#include "broker.h"
+
 
 using std::string;
+using amqp::message;
+using amqp::broker;
 
 namespace amqp {
     class producer {
@@ -15,9 +20,9 @@ namespace amqp {
     public:
         static unsigned int next_id;
 
-        producer(const string name);
+        producer(const string name, broker b);
 
-        producer(const string &name);
+        producer(const string &name, broker b);
 
         unsigned int get_id();
 
@@ -32,6 +37,7 @@ namespace amqp {
     private:
         unsigned int id_;
         string name_;
+        broker broker_;
 
     };
 }

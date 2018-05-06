@@ -68,7 +68,7 @@ namespace amqp {
 
         }
 
-        void bind_client(client c, const string &binding_key);
+        void bind_client(client &c, const string &binding_key);
 
     private:
         type type_;

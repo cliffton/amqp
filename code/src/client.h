@@ -6,8 +6,10 @@
 #define CODE_CLIENT_H
 
 #include <string>
+#include <thread>
 
 using std::string;
+using std::thread;
 
 namespace amqp {
     class client {
@@ -17,20 +19,29 @@ namespace amqp {
 
         client(const string &name, const string &binding_key);
 
+        ~client();
+
         unsigned int get_id();
 
         // Establish connection to queue
         // Consume messages from queue.
-        void connect();
-
         void consume();
 
         void run();
+
+        void start();
+
+        void join();
+
+        void stop();
+
+        bool is_running = true;
 
     private:
         unsigned int id_;
         string name_;
         string binding_key_;
+        thread thread_;
 
     };
 }
