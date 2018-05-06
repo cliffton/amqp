@@ -1,7 +1,3 @@
-//
-// Created by cliffton on 4/10/18.
-//
-
 #ifndef CODE_FRAME_H
 #define CODE_FRAME_H
 

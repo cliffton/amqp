@@ -1,7 +1,3 @@
-//
-// Created by cliffton on 5/5/18.
-//
-
 #ifndef AMQP_BROKER_H
 #define AMQP_BROKER_H
 
@@ -15,9 +11,14 @@ using amqp::client;
 namespace amqp {
 
     /**
+     * The broker is responsible for creating the
+     * exchange and binding the queues to the exchange.
      * This should run as a thread
      * Will wait for messages on connections
      * and invoke the exchange.
+     *
+     * @authors Manpreet Kaur, Cliffton Fernandes
+     *
      */
     class broker {
     public:
