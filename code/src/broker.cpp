@@ -27,3 +27,7 @@ void broker::setup() {
 void broker::register_binding(const string &binding_key) {
     exchange_.bind(binding_key);
 }
+
+void broker::register_client(client c, const string &binding_key) {
+    exchange_.bind_client(c, binding_key);
+}

@@ -29,3 +29,12 @@ void exchange::process_message(message msg) {
     }
 
 }
+
+
+void exchange::bind_client(client c, const string &binding_key) {
+    auto queues = bindings_.find(binding_key);
+    if (queues != bindings_.end()) {
+        amqp_queue q{c.get_id()};
+        queues->second.emplace_back(q);
+    }
+}

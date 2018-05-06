@@ -7,8 +7,10 @@
 
 #include <iostream>
 #include "exchange.h"
+#include "client.h"
 
 using amqp::exchange;
+using amqp::client;
 
 namespace amqp {
 
@@ -23,8 +25,9 @@ namespace amqp {
 
         void register_binding(const string &binding_key);
 
-        void setup();
+        void register_client(client c, const string &binding_key);
 
+        void setup();
 
 
         void run();

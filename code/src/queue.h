@@ -19,7 +19,7 @@ namespace amqp {
     class amqp_queue {
     public:
 
-        amqp_queue();
+        amqp_queue(unsigned int client_id);
 
         void add_message(message msg);
 
@@ -29,6 +29,7 @@ namespace amqp {
 
         std::queue<message> internal_queue_{};
         unsigned int consumers_{};
+        unsigned int client_id_;
     };
 }
 

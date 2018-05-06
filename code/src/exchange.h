@@ -8,6 +8,7 @@
 #include <map>
 #include "queue.h"
 #include "message.h"
+#include "client.h"
 
 using amqp::amqp_queue;
 using amqp::message;
@@ -67,6 +68,7 @@ namespace amqp {
 
         }
 
+        void bind_client(client c, const string &binding_key);
 
     private:
         type type_;
