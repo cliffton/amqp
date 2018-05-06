@@ -10,6 +10,7 @@ set(AMQP_SOURCE_FILES
         src/queue.cpp
         src/exchange.cpp
         src/broker.cpp
+        src/client.cpp
         main.cpp)
 
 

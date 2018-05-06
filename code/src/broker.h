@@ -7,8 +7,10 @@
 
 #include <iostream>
 #include "exchange.h"
+#include "client.h"
 
 using amqp::exchange;
+using amqp::client;
 
 namespace amqp {
 
@@ -21,11 +23,17 @@ namespace amqp {
     public:
         broker(exchange::type etype);
 
+        void register_binding(const string &binding_key);
+
+        void register_client(client &c, const string &binding_key);
+
         void setup();
 
-        
+        void publish(message msg);
 
         void run();
+
+        static bool is_running;
 
     private:
         exchange exchange_;

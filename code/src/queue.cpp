@@ -7,7 +7,7 @@
 
 using amqp::amqp_queue;
 
-amqp_queue::amqp_queue() {
+amqp_queue::amqp_queue(unsigned int client_id) : client_id_{client_id} {
     std::cout << "Created AMQP Queue!" << std::endl;
 }
 

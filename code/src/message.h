@@ -12,6 +12,7 @@ using std::string;
 namespace amqp {
     class message {
     public:
+        message(string data, string topic);
 
         message(string &data, string &topic);
 

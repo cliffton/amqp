@@ -5,22 +5,39 @@
 #ifndef CODE_PRODUCER_H
 #define CODE_PRODUCER_H
 
-namespace amqp {
+#include <string>
+#include "message.h"
+#include "broker.h"
 
+
+using std::string;
+using amqp::message;
+using amqp::broker;
+
+namespace amqp {
     class producer {
 
-        // Establish connection to broker
-        // Send message to broker.
+    public:
+        static unsigned int next_id;
 
-        /**
-         * Connect to server/broker
-         */
+        producer(const string name, broker b);
+
+        producer(const string &name, broker b);
+
+        unsigned int get_id();
+
+        // Establish connection to queue
+        // Consume messages from queue.
         void connect();
 
-        /**
-         * Send message to broker/server.
-         */
-        void send_message();
+        void consume();
+
+        void run();
+
+    private:
+        unsigned int id_;
+        string name_;
+        broker broker_;
 
     };
 }

@@ -11,8 +11,9 @@ exchange::exchange(type etype) : type_{etype} {
     std::cout << "Exchange created!" << std::endl;
 }
 
-void exchange::bind(amqp_queue q, const std::string &routing_key) {
-    bindings_[routing_key].emplace_back(q);
+void exchange::bind(const std::string &routing_key) {
+    std::vector<amqp_queue> q;
+    bindings_.insert(std::make_pair(routing_key, q));
 }
 
 
@@ -27,4 +28,13 @@ void exchange::process_message(message msg) {
         topic(msg);
     }
 
+}
+
+
+void exchange::bind_client(client& c, const string &binding_key) {
+    auto queues = bindings_.find(binding_key);
+    if (queues != bindings_.end()) {
+        amqp_queue q{c.get_id()};
+        queues->second.emplace_back(q);
+    }
 }
