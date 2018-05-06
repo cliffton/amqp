@@ -36,7 +36,7 @@ namespace amqp {
      * @param q
      * @param routing_key
      */
-    void bind(amqp_queue q, const std::string &routing_key);
+    void bind(const std::string &routing_key);
 
     void process_message(message msg);
 
@@ -47,7 +47,7 @@ namespace amqp {
     void fanout(message msg) {
         for (auto b : bindings_) {
             for (auto q : b.second) {
-                q.add_message(msg);
+                q->add_message(msg);
 
             }
         }
@@ -61,7 +61,7 @@ namespace amqp {
         auto queues = bindings_.find(msg.get_topic());
         if (queues != bindings_.end()) {
             for (auto q: queues->second) {
-                q.add_message(msg);
+                q->add_message(msg);
             }
         }
     }
@@ -81,10 +81,10 @@ namespace amqp {
 
             std::string criteria = msg.get_topic();
             for (auto queue : bindings_) {
-                std::string::size_type n = queue->first.find(criteria);
+                std::string::size_type n = queue.first.find(criteria);
                 if(n != std::string::npos ) {
-                    for (auto q: queues->second) {
-                        q.add_message(msg);
+                    for (auto q: queue.second) {
+                        q->add_message(msg);
                     }
                 }
 
@@ -94,11 +94,11 @@ namespace amqp {
 
         }
 
-        void bind_client(client &c, const string &binding_key);
+        std::shared_ptr<amqp_queue> bind_client(client &c, const string &binding_key);
 
     private:
         type type_;
-        std::map<std::string, std::vector<amqp_queue> > bindings_;
+        std::map<std::string, std::vector<std::shared_ptr<amqp_queue> > > bindings_;
     };
 }
 

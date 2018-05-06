@@ -13,6 +13,7 @@
 using amqp::message;
 using std::lock_guard;
 using std::mutex;
+using std::condition_variable;
 
 namespace amqp {
 
@@ -25,11 +26,18 @@ namespace amqp {
 
         message get_message();
 
+        bool get_queue_active_status();
+
     private:
 
         std::queue<message> internal_queue_{};
         unsigned int consumers_{};
         unsigned int client_id_;
+        bool queue_active_status_;
+        mutex queueKey_;
+        condition_variable queue_empty_;
+
+
     };
 }
 

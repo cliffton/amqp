@@ -8,6 +8,8 @@
 #include <string>
 #include "message.h"
 #include "broker.h"
+#include "logger.h"
+#include "my_thread.h"
 
 
 using std::string;
@@ -15,29 +17,25 @@ using amqp::message;
 using amqp::broker;
 
 namespace amqp {
-    class producer {
+    class producer: public my_thread{
 
     public:
         static unsigned int next_id;
 
-        producer(const string name, broker b);
 
-        producer(const string &name, broker b);
+        producer(string& i_name, string& i_topic, broker& i_broker,logger& i_logger);
 
         unsigned int get_id();
-
-        // Establish connection to queue
-        // Consume messages from queue.
-        void connect();
-
-        void consume();
 
         void run();
 
     private:
         unsigned int id_;
         string name_;
-        broker broker_;
+        broker& broker_;
+        logger& logger_;
+        string topic_;
+
 
     };
 }

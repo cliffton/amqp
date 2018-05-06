@@ -6,18 +6,22 @@
 #define CODE_CLIENT_H
 
 #include <string>
-#include <thread>
+#include "my_thread.h"
+#include "queue.h"
+#include "broker.h"
+#include "logger.h"
+
 
 using std::string;
 using std::thread;
 
 namespace amqp {
-    class client {
+    class client : my_thread {
 
     public:
         static unsigned int next_id;
 
-        client(const string &name, const string &binding_key);
+        client(string i_name, string i_bindingKey,broker& i_broker, logger& i_logger);
 
         ~client();
 
@@ -29,19 +33,16 @@ namespace amqp {
 
         void run();
 
-        void start();
 
-        void join();
-
-        void stop();
-
-        bool is_running = true;
 
     private:
         unsigned int id_;
         string name_;
         string binding_key_;
-        thread thread_;
+        std::shared_ptr<amqp_queue> client_queue_;
+        broker& broker_;
+        logger& logger_;
+
 
     };
 }

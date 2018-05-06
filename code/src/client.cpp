@@ -8,11 +8,18 @@ using amqp::client;
 
 unsigned int client::next_id = 1;
 
-client::client(const string &name, const string &binding_key) :
+
+client::client(string i_name, string i_bindingKey,broker& i_broker, logger& i_logger) :
         id_{next_id++},
-        name_{name},
-        binding_key_{binding_key},
-        thread_{} {
+        name_{i_name},
+        binding_key_{i_bindingKey},
+        broker_{i_broker},
+        logger_{i_logger}
+{
+
+
+    broker_.register_client(*this, binding_key_);
+
 
 }
 
@@ -26,28 +33,12 @@ void client::consume() {
 }
 
 void client::run() {
-    while (is_running) {
+    while (true) {
         consume();
     }
 
 }
 
-void client::stop() {
-    is_running = false;
-}
 
-client::~client() {
-    if (thread_.joinable()) {
-        thread_.join();
-    }
-}
 
-void client::join() {
-    if (thread_.joinable()) {
-        thread_.join();
-    }
-}
 
-void client::start() {
-    thread_ = thread{&client::run, this};
-}

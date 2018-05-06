@@ -7,11 +7,11 @@
 
 using amqp::message;
 
-message::message(string data, string topic) : data_{data}, topic_{topic} {
+message::message(string data, string topic, MessageType type) : data_{data}, topic_{topic},type_{type} {
     std::cout << "Message created!" << std::endl;
 }
 
-message::message(string &data, string &topic) : data_{data}, topic_{topic} {
+message::message(string data, string topic) : message(data,topic,MessageType::DATA)  {
     std::cout << "Message created!" << std::endl;
 }
 

@@ -10,11 +10,20 @@
 using std::string;
 
 namespace amqp {
-    class message {
-    public:
-        message(string data, string topic);
 
-        message(string &data, string &topic);
+
+    enum MessageType {
+        DATA,
+        CONTROL
+    };
+
+    class message {
+
+
+    public:
+        message(string data, string topic, MessageType type);
+
+        message(string data, string topic);
 
         string get_data() const;
 
@@ -24,11 +33,17 @@ namespace amqp {
 
         void increment_count();
 
+        void setMessageType();
+
+        MessageType getMessageType();
+
 
     private:
         string data_;
         string topic_;
         unsigned int count_{};
+
+        MessageType type_;
 
 
     };
