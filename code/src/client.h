@@ -1,7 +1,3 @@
-//
-// Created by cliffton on 4/9/18.
-//
-
 #ifndef CODE_CLIENT_H
 #define CODE_CLIENT_H
 
@@ -16,6 +12,16 @@ using std::string;
 using std::thread;
 
 namespace amqp {
+
+    /**
+     * This class simulatest he consumer.
+     * The consumer consumes the messages from the queues.
+     * Each instance is this class should be run
+     * as separate threads.
+     *
+     * @authors Manpreet Kaur, Cliffton Fernandes
+     *
+     */
     class client : my_thread {
 
     public:
