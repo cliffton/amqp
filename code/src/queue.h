@@ -28,6 +28,9 @@ namespace amqp {
 
         bool get_queue_active_status();
 
+
+        unsigned int getClientId();
+
     private:
 
         std::queue<message> internal_queue_{};

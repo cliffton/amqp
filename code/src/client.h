@@ -29,7 +29,7 @@ namespace amqp {
 
         // Establish connection to queue
         // Consume messages from queue.
-        void consume();
+        bool consume();
 
         void run();
 

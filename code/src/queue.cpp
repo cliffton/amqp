@@ -46,3 +46,7 @@ message amqp_queue::get_message() {
 
 
 }
+
+unsigned int amqp::amqp_queue::getClientId() {
+    return client_id_;
+}

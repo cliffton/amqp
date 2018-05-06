@@ -25,7 +25,7 @@ namespace amqp {
 
         void register_binding(const string &binding_key);
 
-        void register_client(client &c, const string &binding_key);
+        std::shared_ptr<amqp_queue> register_client(client &c, const string &binding_key);
 
         void setup();
 
