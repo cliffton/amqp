@@ -1,7 +1,3 @@
-//
-// Created by cliffton on 5/5/18.
-//
-
 #include "producer.h"
 #include <sstream>
 #include "logger.h"

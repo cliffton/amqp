@@ -1,7 +1,3 @@
-//
-// Created by cliffton on 5/5/18.
-//
-
 #ifndef AMQP_BROKER_H
 #define AMQP_BROKER_H
 
