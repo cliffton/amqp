@@ -4,8 +4,13 @@
 #include <map>
 #include "queue.h"
 #include "message.h"
-#include "client.h"
 
+
+namespace amqp{
+    class client;
+}
+
+using amqp::client;
 using amqp::amqp_queue;
 using amqp::message;
 

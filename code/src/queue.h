@@ -4,6 +4,7 @@
 #include <queue>
 #include <mutex>
 #include <iostream>
+#include <condition_variable>
 #include "message.h"
 
 using amqp::message;
