@@ -4,13 +4,8 @@
 #include <map>
 #include "queue.h"
 #include "message.h"
+#include "client.h"
 
-
-namespace amqp{
-    class client;
-}
-
-using amqp::client;
 using amqp::amqp_queue;
 using amqp::message;
 
@@ -57,14 +52,13 @@ namespace amqp {
          * Send message to all queues
          * @param msg
          */
-        void fanout(message msg) ;
+        void fanout(message msg);
 
         /**
          * Send message to the queue with exact same routing keys.
          * @param msg
          */
         void direct(message msg);
-
 
 
         /**
@@ -75,7 +69,7 @@ namespace amqp {
          *
          * @param msg: Message to be sent.
          */
-        void topic(message msg) ;
+        void topic(message msg);
 
 
         std::shared_ptr<amqp_queue> bind_client(client &c, const string &binding_key);
