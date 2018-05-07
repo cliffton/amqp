@@ -72,7 +72,7 @@ namespace amqp {
         /*
          * @return Message type DATA or CONTROL
          */
-        MessageType getMessageType();
+        amqp::MessageType getMessageType();
 
 
     private:
