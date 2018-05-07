@@ -3,11 +3,13 @@
 #include "src/broker.h"
 #include "src/client.h"
 #include "src/logger.h"
+#include "src/producer.h"
 
 using std::thread;
 using amqp::broker;
 using amqp::exchange;
 using amqp::client;
+using amqp::producer;
 using std::chrono::milliseconds;
 using std::this_thread::sleep_for;
 
@@ -18,7 +20,8 @@ int main() {
     broker b(exchange::type::DIRECT);
     // Do you want to create
     std::vector<client *> clients;
-    unsigned int client_count;
+    std::vector<producer *> producers;
+    unsigned int client_count, producer_count;
     unsigned int queue_count;
     std::cout << "Number of bindings ?";
     std::cin >> queue_count;
@@ -41,13 +44,26 @@ int main() {
         client *c = new client{client_name, binding_key, b, logger_};
         c->start();
         clients.emplace_back(c);
-        b.register_client(*c, binding_key);
-
     }
-    thread bt(&broker::run, b);
-    sleep_for(milliseconds(1000));
-    broker::is_running = false;
-    bt.join();
+
+    std::cout << "Number of producers ?";
+    std::cin >> producer_count;
+    while (producer_count--) {
+        std::string producer_name;
+        std::cout << "Please provide producer name:";
+        std::cin >> producer_name;
+        std::string topic;
+        std::cout << "Please provide producer topic:";
+        std::cin >> topic;
+        producer *p = new producer{producer_name, topic, b, logger_};
+        p->start();
+        producers.emplace_back(p);
+    }
+
+
+    for (auto pr : producers) {
+        pr->join();
+    }
     for (auto ct : clients) {
         ct->join();
     }

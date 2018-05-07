@@ -22,7 +22,6 @@ using amqp::message;
  * @param type: type of the Message i.e. DATA or Control
  */
 message::message(string data, string topic, MessageType type) : data_{data}, topic_{topic},type_{type} {
-    std::cout << "Message created!" << std::endl;
 }
 
 /*
@@ -34,7 +33,6 @@ message::message(string data, string topic, MessageType type) : data_{data}, top
  */
 
 message::message(string data, string topic) : message(data,topic,MessageType::DATA)  {
-    std::cout << "Message created!" << std::endl;
 }
 
 

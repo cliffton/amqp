@@ -33,5 +33,5 @@ void producer::run() {
         broker_.publish(msg);
         end = std::chrono::system_clock::now().time_since_epoch().count();
 
-    } while((end - start) < 10000);
+    } while((end - start) < 10);
 }

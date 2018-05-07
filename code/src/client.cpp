@@ -1,5 +1,6 @@
 #include "client.h"
 #include "message.h"
+#include "broker.h"
 
 using amqp::client;
 
@@ -27,7 +28,8 @@ client::client(string i_name, string i_bindingKey,broker& i_broker, logger& i_lo
 {
 
 
-//    client_queue_ = broker_.register_client(*this, binding_key_);
+    client_queue_ = broker_.register_client(*this, binding_key_);
+    std::cout<<"Consumer "<< id_<<" has been created.";
 
 }
 
