@@ -32,7 +32,7 @@ namespace amqp {
 
         client(string i_name, string i_bindingKey, broker &i_broker, logger &i_logger);
 
-        ~client();
+//        ~client();
 
         unsigned int get_id();
 

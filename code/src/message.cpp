@@ -27,3 +27,7 @@ unsigned int message::get_count() const {
 void message::increment_count() {
     count_++;
 }
+
+amqp::MessageType message::getMessageType() {
+    return type_;
+}

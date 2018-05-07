@@ -40,7 +40,7 @@ namespace amqp {
 
         void setMessageType();
 
-        MessageType getMessageType();
+        amqp::MessageType getMessageType();
 
 
     private:
