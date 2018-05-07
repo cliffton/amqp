@@ -17,7 +17,23 @@ using std::this_thread::sleep_for;
 int main() {
 
     logger logger_{std::cout};
-    broker b(exchange::type::DIRECT);
+
+    int extype;
+    exchange::type t;
+    std::cout << "Please provide exchange type: \n 0: FANOUT \n 1: DIRECT \n 2: TOPIC \n >" << std::endl;
+    std::cin >> extype;
+    if (extype == 0) {
+        t = exchange::type::FAN_OUT;
+    }
+    if (extype == 1) {
+        t = exchange::type::DIRECT;
+    }
+    if (extype == 3) {
+        t = exchange::type::TOPIC;
+    }
+
+
+    broker b(t);
     // Do you want to create
     std::vector<client *> clients;
     std::vector<producer *> producers;
@@ -28,7 +44,7 @@ int main() {
     int count = 1;
     while (queue_count--) {
         std::string binding_key;
-        std::cout << "Please provide key binding "<< count <<": ";
+        std::cout << "Please provide key binding " << count << ": ";
         std::cin >> binding_key;
         b.register_binding(binding_key);
         count++;
@@ -36,7 +52,7 @@ int main() {
 
     std::cout << "Number of clients ? ";
     std::cin >> client_count;
-    count  = 1;
+    count = 1;
     while (client_count--) {
         std::string client_name;
         std::cout << "Please provide client name: ";
