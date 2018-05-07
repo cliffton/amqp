@@ -2,11 +2,20 @@
 #define AMQP_BROKER_H
 
 #include <iostream>
+#include "queue.h"
 #include "exchange.h"
-#include "client.h"
+
 
 using amqp::exchange;
-using amqp::client;
+
+
+
+namespace amqp{
+    class client;
+}
+
+using std::string;
+using amqp::amqp_queue;
 
 namespace amqp {
 
@@ -29,7 +38,6 @@ namespace amqp {
         std::shared_ptr<amqp_queue> register_client(client &c, const string &binding_key);
 
 
-
         void publish(message msg);
 
         void run();
@@ -41,7 +49,6 @@ namespace amqp {
     private:
 
         exchange exchange_;
-
 
 
     };

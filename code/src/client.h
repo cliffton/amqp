@@ -4,9 +4,12 @@
 #include <string>
 #include "my_thread.h"
 #include "queue.h"
-#include "broker.h"
 #include "logger.h"
 
+
+namespace amqp{
+    class broker;
+}
 
 using std::string;
 using std::thread;
@@ -22,7 +25,7 @@ namespace amqp {
      * @authors Manpreet Kaur, Cliffton Fernandes
      *
      */
-    class client : my_thread {
+    class client : public my_thread {
 
     public:
         /*
@@ -30,6 +33,7 @@ namespace amqp {
          */
         static unsigned int next_id;
 
+<<<<<<< HEAD
         /*
          * Construct client.
          *
@@ -40,6 +44,9 @@ namespace amqp {
          */
 
         client(string i_name, string i_bindingKey,broker& i_broker, logger& i_logger);
+=======
+        client(string i_name, string i_bindingKey, broker &i_broker, logger &i_logger);
+>>>>>>> fc548aacc18e5d4c1f3e96afed187cd3916a1b54
 
 
 
@@ -63,7 +70,6 @@ namespace amqp {
         void run();
 
 
-
     private:
 
         //unique Id for the client
@@ -77,12 +83,17 @@ namespace amqp {
 
         //handle for subscribed queue
         std::shared_ptr<amqp_queue> client_queue_;
+<<<<<<< HEAD
 
         //Reference to broker
         broker& broker_;
 
         //Reference to Thread safe logger.
         logger& logger_;
+=======
+        broker &broker_;
+        logger &logger_;
+>>>>>>> fc548aacc18e5d4c1f3e96afed187cd3916a1b54
 
 
     };

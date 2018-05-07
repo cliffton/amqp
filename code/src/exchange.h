@@ -61,14 +61,13 @@ namespace amqp {
          * Send message to all queues
          * @param msg
          */
-        void fanout(message msg) ;
+        void fanout(message msg);
 
         /**
          * Send message to the queue with exact same routing keys.
          * @param msg
          */
         void direct(message msg);
-
 
 
         /**
@@ -79,7 +78,7 @@ namespace amqp {
          *
          * @param msg: Message to be sent.
          */
-        void topic(message msg) ;
+        void topic(message msg);
 
 
         /**
