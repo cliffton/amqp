@@ -20,7 +20,7 @@ int main() {
 
     int extype;
     exchange::type t;
-    std::cout << "Please provide exchange type: \n 0: FANOUT \n 1: DIRECT \n 2: TOPIC \n >" ;
+    std::cout << "Please provide exchange type: \n 0: FANOUT \n 1: DIRECT \n 2: TOPIC \n >";
     std::cin >> extype;
     if (extype == 0) {
         t = exchange::type::FAN_OUT;
@@ -35,8 +35,8 @@ int main() {
 
     broker b(t);
     // Do you want to create
-    std::vector<client *> clients;
-    std::vector<producer *> producers;
+    std::vector<std::unique_ptr<client>> clients;
+    std::vector<std::unique_ptr<producer>> producers;
     unsigned int client_count, producer_count;
     unsigned int queue_count;
     std::cout << "Number of bindings keys ? ";
@@ -60,8 +60,7 @@ int main() {
         std::string binding_key;
         std::cout << "Please provide client key binding: ";
         std::cin >> binding_key;
-        client *c = new client{client_name, binding_key, b, logger_};
-        clients.emplace_back(c);
+        clients.emplace_back(new client{client_name, binding_key, b, logger_});
         std::cout << std::endl;
         count++;
     }
@@ -75,23 +74,22 @@ int main() {
         std::string topic;
         std::cout << "Please provide producer topic: ";
         std::cin >> topic;
-        producer *p = new producer{producer_name, topic, b, logger_};
-        producers.emplace_back(p);
+        producers.emplace_back(new producer{producer_name, topic, b, logger_});
     }
 
-    for (auto ct : clients) {
+    for (auto &ct : clients) {
         ct->start();
     }
 
-    for (auto pr : producers) {
+    for (auto &pr : producers) {
         pr->start();
     }
 
 
-    for (auto pr : producers) {
+    for (auto &pr : producers) {
         pr->join();
     }
-    for (auto ct : clients) {
+    for (auto &ct : clients) {
         ct->join();
     }
 
