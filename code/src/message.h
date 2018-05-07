@@ -84,7 +84,7 @@ namespace amqp {
         string topic_;
 
         //Message type DATA or CONTROL
-        MessageType type_;
+        amqp::MessageType type_;
 
 
     };
