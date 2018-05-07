@@ -14,7 +14,7 @@ producer::producer(string& i_name, string& i_topic, broker& i_broker,logger& i_l
 
     id_ = next_id;
     next_id++;
-    std::cout<<"Producer "<< id_<<" has been created.";
+    std::cout<<"Producer "<< id_<<" has been created." << std::endl;
 
 }
 
@@ -33,5 +33,5 @@ void producer::run() {
         broker_.publish(msg);
         end = std::chrono::system_clock::now().time_since_epoch().count();
 
-    } while((end - start) < 10);
+    } while((end - start) < 1000);
 }

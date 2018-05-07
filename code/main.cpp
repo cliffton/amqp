@@ -23,37 +23,42 @@ int main() {
     std::vector<producer *> producers;
     unsigned int client_count, producer_count;
     unsigned int queue_count;
-    std::cout << "Number of bindings ?";
+    std::cout << "Number of bindings keys ? ";
     std::cin >> queue_count;
+    int count = 1;
     while (queue_count--) {
         std::string binding_key;
-        std::cout << "Please provide key binding:";
+        std::cout << "Please provide key binding "<< count <<": ";
         std::cin >> binding_key;
         b.register_binding(binding_key);
+        count++;
     }
 
-    std::cout << "Number of clients ?";
+    std::cout << "Number of clients ? ";
     std::cin >> client_count;
+    count  = 1;
     while (client_count--) {
         std::string client_name;
-        std::cout << "Please provide client name:";
+        std::cout << "Please provide client name: ";
         std::cin >> client_name;
         std::string binding_key;
-        std::cout << "Please provide client key binding:";
+        std::cout << "Please provide client key binding: ";
         std::cin >> binding_key;
         client *c = new client{client_name, binding_key, b, logger_};
         c->start();
         clients.emplace_back(c);
+        std::cout << std::endl;
+        count++;
     }
 
-    std::cout << "Number of producers ?";
+    std::cout << "Number of producers ? ";
     std::cin >> producer_count;
     while (producer_count--) {
         std::string producer_name;
-        std::cout << "Please provide producer name:";
+        std::cout << "Please provide producer name: ";
         std::cin >> producer_name;
         std::string topic;
-        std::cout << "Please provide producer topic:";
+        std::cout << "Please provide producer topic: ";
         std::cin >> topic;
         producer *p = new producer{producer_name, topic, b, logger_};
         p->start();
