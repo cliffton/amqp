@@ -26,20 +26,50 @@ namespace amqp {
     class producer: public my_thread{
 
     public:
+
+        /*
+         * static data member to assign unique id's to all the producers
+         */
         static unsigned int next_id;
 
 
+        /*
+         * Construct producer.
+         *
+         * @param   i_name: name of the producer
+         * @param   i_topic: topic based on which messages will be routed
+         * @param   i_broker: Reference to broker
+         * @param   i_logger: Reference to the thread safe logger
+         */
         producer(string& i_name, string& i_topic, broker& i_broker,logger& i_logger);
+
+        /*
+         * @return unique id for the client.
+         */
 
         unsigned int get_id();
 
+        /*
+         * push messages for some time.
+         * Notify broker that there are no more messages and exit.
+         */
         void run();
 
     private:
+
+        //unique Id for the producer
         unsigned int id_;
+
+        //name for the producer
         string name_;
+
+        //Reference to broker
         broker& broker_;
+
+        //Reference to Thread safe logger.
         logger& logger_;
+
+        //topic based on which messages will be routed
         string topic_;
 
 

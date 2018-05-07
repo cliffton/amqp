@@ -127,6 +127,10 @@ void exchange::direct(message msg) {
     }
 }
 
+/*
+ *  End Binding for the input binding key
+ *  @param i_bindingKey: binding key for the producer for which there exist no more data
+ */
 void amqp::exchange::endBinding(string i_binding) {
 
     auto queues = bindings_.find(i_binding);
