@@ -26,30 +26,65 @@ namespace amqp {
 
     public:
 
+        /*
+         * construct Queue
+         *
+         * @param: client_id: client id for which queue will be created
+         */
 
         amqp_queue(unsigned int client_id);
 
+        /*
+        * Allow producer to push messages on to the queue in a thread safe manner.
+        * @param msg: message to be pushed
+        */
+
         void add_message(message msg);
 
+        /*
+        *
+        * Read the queue in a thread safe manner.
+        * Wait in case queue is empty and is active
+        * @return msg: Message read in acse queue is active or Control message in case queue is no longer active
+        */
         message get_message();
+
+
+        /*
+         * @return queue active status
+         */
 
         bool get_queue_active_status();
 
 
+        /*
+         * @param i_status set queue active status to input status
+         */
         void set_active_status(bool i_status);
 
 
 
+        /*
+         * @return client id with which queue is associated
+         */
 
         unsigned int getClientId();
 
     private:
 
+        //Queue where messages will be pushed
         std::queue<message> internal_queue_{};
-        unsigned int consumers_{};
+
+        // client id with which queue is associated
         unsigned int client_id_;
+
+        //queue active status
         bool queue_active_status_;
+
+        //mutex to provide synchronised access to key
         mutex queueKey_;
+
+        //condition variable to wait if the queue is empty.
         condition_variable queue_empty_;
 
 

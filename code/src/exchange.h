@@ -96,7 +96,11 @@ namespace amqp {
 
         void endSession();
 
-        void endBinding(string i_binding);
+        /*
+         * End Binding for the input binding key
+         * @param i_bindingKey: binding key for the producer for which there exist no more data
+         */
+        void endBinding(string i_bindingKey);
 
     private:
 
