@@ -3,15 +3,27 @@
 
 using amqp::exchange;
 
+/**
+ *
+ * Construct exchange with input type
+ * @param ex_type
+ */
 exchange::exchange(type etype) : type_{etype} {
     std::cout << "Exchange created!" << std::endl;
 }
 
+/**
+* Binds a queue to the given binding key.
+* @param routing_key: Messages will be routed to the queue based on teh binding key
+*/
 void exchange::bind(const std::string &routing_key) {
     std::vector<std::shared_ptr<amqp_queue> > q;
     bindings_.insert(std::make_pair(routing_key, q));
 }
 
+/**
+* Push the message to appropriate queue.
+*/
 
 void exchange::process_message(message msg) {
     // find routing key in bindings
@@ -26,7 +38,13 @@ void exchange::process_message(message msg) {
 
 }
 
-
+/**
+* Create new queue for the client and link the queue to binding queue list
+*
+* @param i_client: Client that will consume messages from the queue
+* @param i_binding_key: binding Key using which messages will be routed.
+* @return return handle to the amqp queue.
+*/
 std::shared_ptr<amqp_queue> exchange::bind_client(client& i_client, const string &binding_key) {
     auto queues = bindings_.find(binding_key);
     if (queues != bindings_.end()) {
@@ -56,6 +74,9 @@ std::shared_ptr<amqp_queue> exchange::bind_client(client& i_client, const string
 
 }
 
+/**
+ * delete all the queues linked to the queue
+ */
 void amqp::exchange::endSession() {
 
     for (auto& queues : bindings_) {
@@ -107,9 +128,9 @@ void exchange::direct(message msg) {
 }
 
 /**
-     * Send message to all queues
-     * @param msg
-     */
+ * Send message to all queues
+ * @param msg
+ */
 void exchange::fanout(message msg) {
     for (auto b : bindings_) {
         for (auto q : b.second) {

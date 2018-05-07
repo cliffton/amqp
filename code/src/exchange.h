@@ -25,6 +25,13 @@ namespace amqp {
     class exchange {
     public:
 
+        /*
+         * Echange Type
+         *  - Fanout
+         *  - Direct
+         *  - Topic
+         *
+         */
         enum type {
             DIRECT,
             FAN_OUT,
@@ -32,19 +39,21 @@ namespace amqp {
         };
 
         /**
-         * Constructor takes
-         * exchange type as input.
+         *
+         * Construct exchange with input type
          * @param ex_type
          */
         exchange(type etype);
 
         /**
-         * Binds a queue to the give
-         * binding key.
-         * @param q
-         * @param routing_key
+         * Binds a queue to the given binding key.
+         * @param routing_key: Messages will be routed to the queue based on teh binding key
          */
         void bind(const std::string &routing_key);
+
+        /**
+         * Push the message to appropriate queue.
+         */
 
         void process_message(message msg);
 
@@ -73,14 +82,27 @@ namespace amqp {
         void topic(message msg) ;
 
 
-        std::shared_ptr<amqp_queue> bind_client(client &c, const string &binding_key);
+        /**
+         * Create new queue for the client and link the queue to binding queue list
+         *
+         * @param i_client: Client that will consume messages from the queue
+         * @param i_binding_key: binding Key using which messages will be routed.
+         * @return return handle to the amqp queue.
+         */
+        std::shared_ptr<amqp_queue> bind_client(client &i_client, const string &i_binding_key);
+
+        /**
+         * delete all the queues linked to the queue
+         */
 
         void endSession();
 
     private:
 
+        //Define exchange type
         type type_;
 
+        //defines the binding key and corresponding queues.
         std::map<std::string, std::vector<std::shared_ptr<amqp_queue> > > bindings_;
     };
 }
