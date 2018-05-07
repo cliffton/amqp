@@ -20,7 +20,7 @@ int main() {
 
     int extype;
     exchange::type t;
-    std::cout << "Please provide exchange type: \n 0: FANOUT \n 1: DIRECT \n 2: TOPIC \n >" << std::endl;
+    std::cout << "Please provide exchange type: \n 0: FANOUT \n 1: DIRECT \n 2: TOPIC \n >" ;
     std::cin >> extype;
     if (extype == 0) {
         t = exchange::type::FAN_OUT;
