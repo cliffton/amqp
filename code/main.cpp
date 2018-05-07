@@ -42,7 +42,6 @@ int main() {
         std::cout << "Please provide client key binding:";
         std::cin >> binding_key;
         client *c = new client{client_name, binding_key, b, logger_};
-        c->start();
         clients.emplace_back(c);
     }
 
@@ -56,8 +55,15 @@ int main() {
         std::cout << "Please provide producer topic:";
         std::cin >> topic;
         producer *p = new producer{producer_name, topic, b, logger_};
-        p->start();
         producers.emplace_back(p);
+    }
+
+    for (auto ct : clients) {
+        ct->start();
+    }
+
+    for (auto pr : producers) {
+        pr->start();
     }
 
 
