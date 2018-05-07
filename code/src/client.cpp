@@ -1,6 +1,7 @@
 #include "client.h"
 #include "message.h"
 #include "broker.h"
+#include <sstream>
 
 using amqp::client;
 
@@ -50,12 +51,15 @@ bool client::consume() {
 
     message readMessage = client_queue_->get_message();
     if(readMessage.getMessageType() == MessageType::DATA) {
-        logger_.log(std::string("CL:" + id_ ) + RECEIVED_DATA +  readMessage.get_data());
+        std::stringstream data;
+        data<<"CL: "<<id_<<" Binding Key: "<<binding_key_<<" " <<RECEIVED_DATA<<" "<<readMessage.get_data();
+        logger_.log(data.str());
         return true;
     }
     else {
-        logger_.log(std::string("CL:" + id_ ) + RECEIVED_DATA + std::string("Control Message!") );
-        logger_.log(std::string("CL:" + id_ + std::string("Exiting")));
+        std::stringstream data;
+        data<<"CL: "<<id_<<" Binding Key: "<<binding_key_<<" " <<"Exiting";
+        logger_.log(data.str());
         return false;
     }
 
