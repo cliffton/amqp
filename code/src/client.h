@@ -7,6 +7,10 @@
 #include "logger.h"
 
 
+namespace amqp{
+    class broker;
+}
+
 using std::string;
 using std::thread;
 

@@ -2,7 +2,20 @@
 #define AMQP_BROKER_H
 
 #include <iostream>
+#include "queue.h"
+#include "exchange.h"
 
+
+using amqp::exchange;
+
+
+
+namespace amqp{
+    class client;
+}
+
+using std::string;
+using amqp::amqp_queue;
 
 namespace amqp {
 

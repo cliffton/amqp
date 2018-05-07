@@ -19,7 +19,7 @@ client::client(string i_name, string i_bindingKey,broker& i_broker, logger& i_lo
 {
 
 
-    client_queue_ = broker_.register_client(*this, binding_key_);
+//    client_queue_ = broker_.register_client(*this, binding_key_);
 
 }
 
