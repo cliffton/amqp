@@ -1,0 +1,52 @@
+Please provide exchange type: 
+ 0: FANOUT 
+ 1: DIRECT 
+ 2: TOPIC 
+ > 0
+Exchange created!
+Broker created!
+Number of bindings keys ? 2
+Please provide key binding 1: x
+Please provide key binding 2: y
+Number of clients ? 2
+Please provide client name: c1
+Please provide client key binding: x
+Created AMQP Queue!
+Consumer 1 has been created.
+Please provide client name: c2
+Please provide client key binding: y
+Created AMQP Queue!
+Consumer 2 has been created.
+Number of producers ? 2
+Please provide producer name: p1
+Please provide producer topic: x
+Producer 1 has been created.
+Please provide producer name: p2
+Please provide producer topic: y
+Producer 2 has been created.
+PD: Producer ID: 1 Topic: x Message: 0
+PD: Producer ID: 2 Topic: y Message: 0
+PD: Producer ID: 1 Topic: x Message: 1
+CL: 1 Binding Key: x Received Data Producer ID: 1 Topic: x Message: 0
+PD: Producer ID: 2 Topic: y Message: 1
+CL: 2 Binding Key: y Received Data Producer ID: 1 Topic: x Message: 0
+PD: Producer ID: 1 Topic: x Message: 2
+PD: Producer ID: 2 Topic: y Message: 2
+CL: 2 Binding Key: y Received Data Producer ID: 2 Topic: y Message: 0
+CL: 1 Binding Key: x Received Data Producer ID: 2 Topic: y Message: 0
+CL: 2 Binding Key: y Received Data Producer ID: 1 Topic: x Message: 1
+PD: Producer ID: 1 Topic: x Message: 3
+PD: Producer ID: 2 Topic: y Message: 3
+CL: 2 Binding Key: y Received Data Producer ID: 2 Topic: y Message: 1
+CL: 1 Binding Key: x Received Data Producer ID: 1 Topic: x Message: 1
+CL: 2 Binding Key: y Received Data Producer ID: 1 Topic: x Message: 2
+CL: 1 Binding Key: x Received Data Producer ID: 2 Topic: y Message: 1
+CL: 2 Binding Key: y Received Data Producer ID: 2 Topic: y Message: 2
+CL: 1 Binding Key: x Received Data Producer ID: 1 Topic: x Message: 2
+CL: 2 Binding Key: y Received Data Producer ID: 1 Topic: x Message: 3
+CL: 1 Binding Key: x Received Data Producer ID: 2 Topic: y Message: 2
+CL: 2 Binding Key: y Received Data Producer ID: 2 Topic: y Message: 3
+CL: 1 Binding Key: x Received Data Producer ID: 1 Topic: x Message: 3
+CL: 2 Binding Key: y Exiting
+CL: 1 Binding Key: x Received Data Producer ID: 2 Topic: y Message: 3
+CL: 1 Binding Key: x Exiting

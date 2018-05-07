@@ -1,0 +1,32 @@
+Please provide exchange type: 
+ 0: FANOUT 
+ 1: DIRECT 
+ 2: TOPIC 
+ > 1
+Exchange created!
+Broker created!
+Number of bindings keys ? 2
+Please provide key binding 1: big_bang_theory
+Please provide key binding 2: star_trek
+Number of clients ? 2
+Please provide client name: Q1
+Please provide client key binding: big_bang_theory
+Created AMQP Queue!
+Consumer 1 has been created.
+Please provide client name: Q2
+Please provide client key binding: star_trek
+Created AMQP Queue!
+Consumer 2 has been created.
+Number of producers ? 2
+Please provide producer name: TV1
+Please provide producer topic: big_bang_theory
+Producer 1 has been created.
+Please provide producer name: TV2
+Please provide producer topic: star_trek
+Producer 2 has been created.
+PD: Producer ID: 1 Topic: big_bang_theory Message: 0
+PD: Producer ID: 2 Topic: star_trek Message: 0
+CL: 1 Binding Key: big_bang_theory Received Data Producer ID: 1 Topic: big_bang_theory Message: 0
+CL: 1 Binding Key: big_bang_theory Exiting
+CL: 2 Binding Key: star_trek Received Data Producer ID: 2 Topic: star_trek Message: 0
+CL: 2 Binding Key: star_trek Exiting
