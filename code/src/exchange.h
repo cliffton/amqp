@@ -96,6 +96,8 @@ namespace amqp {
 
         void endSession();
 
+        void endBinding(string i_binding);
+
     private:
 
         //Define exchange type

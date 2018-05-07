@@ -127,6 +127,17 @@ void exchange::direct(message msg) {
     }
 }
 
+void amqp::exchange::endBinding(string i_binding) {
+
+    auto queues = bindings_.find(i_binding);
+    if (queues != bindings_.end()) {
+        for(auto& queue: queues->second) {
+            queue->set_active_status(false);
+        }
+    }
+
+}
+
 /**
  * Send message to all queues
  * @param msg

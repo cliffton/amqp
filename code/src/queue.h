@@ -36,6 +36,9 @@ namespace amqp {
         bool get_queue_active_status();
 
 
+        void set_active_status(bool i_status);
+
+
 
 
         unsigned int getClientId();

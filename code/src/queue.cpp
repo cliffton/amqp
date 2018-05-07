@@ -44,6 +44,11 @@ message amqp_queue::get_message() {
 
 }
 
+void amqp::amqp_queue::set_active_status(bool i_status) {
+
+    queue_active_status_ = i_status;
+}
+
 unsigned int amqp::amqp_queue::getClientId() {
     return client_id_;
 }
