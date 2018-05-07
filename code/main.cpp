@@ -49,7 +49,6 @@ int main() {
     broker::is_running = false;
     bt.join();
     for (auto ct : clients) {
-        ct->stop();
         ct->join();
     }
 
