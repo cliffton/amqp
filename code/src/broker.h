@@ -46,6 +46,8 @@ namespace amqp {
 
         void endSimulation();
 
+        void endBinding(string i_bindingKey);
+
     private:
 
         exchange exchange_;

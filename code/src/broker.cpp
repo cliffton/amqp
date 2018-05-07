@@ -17,6 +17,10 @@ void broker::run() {
 
 }
 
+void amqp::broker::endBinding(string i_bindingKey) {
+    exchange_.endBinding(i_bindingKey);
+}
+
 void amqp::broker::endSimulation() {
     exchange_.endSession();
 

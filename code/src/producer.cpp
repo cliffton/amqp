@@ -34,4 +34,5 @@ void producer::run() {
         end = std::chrono::system_clock::now().time_since_epoch().count();
 
     } while((end - start) < 1000);
+    broker_.endBinding(topic_);
 }
