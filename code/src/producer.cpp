@@ -24,7 +24,7 @@ producer::producer(string& i_name, string& i_topic, broker& i_broker,logger& i_l
 
     id_ = next_id;
     next_id++;
-    std::cout<<"Producer "<< id_<<" has been created.";
+    std::cout<<"Producer "<< id_<<" has been created." << std::endl;
 
 }
 
