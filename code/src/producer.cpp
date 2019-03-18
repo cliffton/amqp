@@ -35,8 +35,8 @@ producer::producer(string& i_name, string& i_topic, broker& i_broker,logger& i_l
 
 void producer::run() {
 
-    long start = std::chrono::system_clock::now().time_since_epoch().count();
-    long end = 0;
+    clock_t start = clock();
+    clock_t end ;
     int dataIndex = 0;
     do {
         std::stringstream data;
@@ -44,8 +44,8 @@ void producer::run() {
         logger_.log(std::string("PD: ") + data.str());
         message msg = message(data.str(), topic_);
         broker_.publish(msg);
-        end = std::chrono::system_clock::now().time_since_epoch().count();
+        end = clock();
 
-    } while((end - start) < 1000);
+    } while((end - start) < 10000);
     broker_.endBinding(topic_);
 }
